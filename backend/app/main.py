@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 
-app = FastAPI(
-    title="AI Project Management Platform API",
-    description="Backend API for the AI Project Management Platform.",
-    version="1.0.0",
-)
+from app.database import Base, engine
+
+# Import models so SQLAlchemy registers them
+from app.models.user import User
+
+app = FastAPI()
+
+Base.metadata.create_all(engine)
+
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the AI Project Management Platform API"}
+    return {"message": "Hello World"}

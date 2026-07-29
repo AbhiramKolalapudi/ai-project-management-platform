@@ -139,3 +139,101 @@ learn PostgreSQL fundamentals and SQLAlchemy concepts
 - Create Tables Automatically with SQLAlchemy
 - Database Sessions
 - Build the First API Endpoint
+
+# AI Project Management Platform
+
+## Learning Journal — Day 3
+
+**Date:** 29 July 2026
+
+---
+
+## 🎯 Goal
+
+Connect the FastAPI application to PostgreSQL using SQLAlchemy and understand how Python models become database tables.
+
+## ✅ Completed
+
+* Installed SQLAlchemy, `psycopg`, and `pydantic-settings`.
+* Created the backend configuration system using `.env` and Pydantic Settings.
+* Created `config.py` to load environment variables.
+* Created `database.py` with a shared SQLAlchemy Engine and Declarative Base.
+* Created the first SQLAlchemy `User` model.
+* Connected SQLAlchemy to the PostgreSQL database.
+* Automatically generated the `users` table using `Base.metadata.create_all(engine)`.
+* Verified the generated SQL using `echo=True`.
+* Explored why `create_all()` only creates missing tables and does not modify existing ones.
+
+## 📚 Concepts Learned
+
+* SQLAlchemy Architecture
+* SQLAlchemy Engine
+* Database Drivers (`psycopg`)
+* PostgreSQL Connection URLs
+* Environment Configuration with `pydantic-settings`
+* `BaseSettings`
+* `SettingsConfigDict`
+* Single Source of Truth
+* Declarative Base
+* Model Registration
+* Metadata
+* SQLAlchemy Models
+* `Mapped`
+* `mapped_column`
+* Python Types vs Database Types
+* `String`
+* `PRIMARY KEY`
+* `UNIQUE`
+* `NOT NULL`
+* Automatic Type Inference
+* `Base.metadata`
+* `Base.metadata.create_all()`
+* Idempotent Operations
+* SQL Generation
+* Why ORMs Generate SQL Instead of Replacing SQL
+* Why Alembic Exists
+
+## 💡 Key Takeaways
+
+* SQLAlchemy acts as the bridge between Python objects and SQL.
+* The Engine manages communication with the database but does not immediately open a connection.
+* `Base` acts as a shared registry for all database models.
+* Models are only blueprints until SQLAlchemy generates SQL from the stored metadata.
+* `Mapped` defines the Python type, while `mapped_column()` defines database-specific behaviour.
+* `create_all()` safely creates missing tables but intentionally does not modify existing ones.
+* Database schema evolution should be handled with migration tools such as Alembic rather than `create_all()`.
+
+## 📂 Current Project Structure
+
+```text
+backend/
+├── app/
+│   ├── core/
+│   │   ├── __init__.py
+│   │   └── config.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── __init__.py
+│   ├── database.py
+│   └── main.py
+├── .env
+├── requirements.txt
+└── .gitignore
+```
+
+## 📝 Git Commit
+
+```bash
+implement SQLAlchemy models and database configuration
+```
+
+## ➡️ Next Session
+
+* SQLAlchemy Sessions
+* Session Lifecycle
+* CRUD Operations with SQLAlchemy
+* Dependency Injection with FastAPI
+* Alembic
+* Database Migrations
+* Build the First API Endpoint
