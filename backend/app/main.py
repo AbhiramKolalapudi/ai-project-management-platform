@@ -1,13 +1,10 @@
 from fastapi import FastAPI
 
-from app.database import Base, engine
-
-# Import models so SQLAlchemy registers them
-from app.models.user import User
+from app.api.auth import router as auth_router
 
 app = FastAPI()
 
-Base.metadata.create_all(engine)
+app.include_router(auth_router)
 
 
 @app.get("/")

@@ -237,3 +237,123 @@ implement SQLAlchemy models and database configuration
 * Alembic
 * Database Migrations
 * Build the First API Endpoint
+
+# AI Project Management Platform
+
+## Learning Journal — Day 4
+
+**Date:** 30 July 2026
+
+---
+
+## 🎯 Goal
+
+Implement database migrations, build the complete authentication system, and understand how JWT-based authentication secures modern web applications.
+
+## ✅ Completed
+
+- Installed and configured Alembic.
+- Initialized the Alembic migration environment.
+- Created the first database migration.
+- Applied database migrations to PostgreSQL.
+- Built the complete User CRUD layer using SQLAlchemy.
+- Created the User Service layer.
+- Implemented user registration.
+- Added password hashing using Passlib and bcrypt.
+- Implemented password verification.
+- Created reusable authentication utilities.
+- Generated JWT access tokens using PyJWT.
+- Implemented JWT verification and expiration handling.
+- Built custom authentication exceptions.
+- Created the `get_current_user()` dependency.
+- Protected API endpoints using FastAPI Dependency Injection.
+- Implemented the `/auth/me` endpoint.
+- Configured OAuth2 Password Flow with Swagger.
+- Successfully tested the complete authentication workflow.
+
+## 📚 Concepts Learned
+
+- Alembic
+- Database Migrations
+- Migration Versioning
+- Schema Evolution
+- Service Layer
+- CRUD Architecture
+- Password Hashing
+- Bcrypt
+- Password Verification
+- Authentication vs Authorization
+- Stateful vs Stateless Authentication
+- JSON Web Tokens (JWT)
+- JWT Header
+- JWT Payload
+- JWT Signature
+- JWT Claims (`sub`, `exp`)
+- JWT Expiration
+- Secret Keys
+- Digital Signatures
+- OAuth2 Password Flow
+- OAuth2PasswordBearer
+- OAuth2PasswordRequestForm
+- Authorization Headers
+- Bearer Tokens
+- FastAPI Dependency Injection
+- Protected Routes
+- Custom Exceptions
+- Layered Authentication Architecture
+
+## 💡 Key Takeaways
+
+- Alembic provides safe, version-controlled database schema migrations.
+- Passwords should never be stored directly in the database and must always be securely hashed.
+- JWT authentication removes the need for server-side sessions by storing user identity inside a signed token.
+- JWTs are signed rather than encrypted, so sensitive information should never be stored in the payload.
+- FastAPI's Dependency Injection allows authentication logic to be reused across every protected endpoint.
+- Separating API routes, services, security utilities, dependencies, and exceptions results in a cleaner and more maintainable backend architecture.
+
+## 📂 Current Project Structure
+
+```text
+backend/
+├── alembic/
+├── app/
+│   ├── api/
+│   │   └── auth.py
+│   ├── core/
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── exceptions/
+│   │   ├── auth.py
+│   │   ├── user.py
+│   │   └── __init__.py
+│   ├── models/
+│   │   └── user.py
+│   ├── schemas/
+│   │   └── user.py
+│   ├── services/
+│   │   └── user_service.py
+│   ├── database.py
+│   ├── dependencies.py
+│   └── main.py
+├── alembic.ini
+├── .env
+├── requirements.txt
+└── .gitignore
+```
+
+## 📝 Git Commit
+
+```
+implement JWT authentication and database migrations
+```
+
+## ➡️ Next Session
+
+- Database Relationships
+- One-to-Many Relationships
+- SQLAlchemy Relationships
+- Foreign Keys
+- Create the `Project` Model
+- Project CRUD Operations
+- Nested API Routes
+- Project Architecture
