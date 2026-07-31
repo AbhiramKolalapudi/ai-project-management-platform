@@ -357,3 +357,126 @@ implement JWT authentication and database migrations
 - Project CRUD Operations
 - Nested API Routes
 - Project Architecture
+
+
+## Learning Journal — Day 5
+
+**Date:** 31 July 2026
+
+
+## 🎯 Goal
+
+Build the complete Projects API using a production-style backend architecture while understanding RESTful API design, service layers, validation, and CRUD operations with FastAPI and SQLAlchemy.
+
+
+## ✅ Completed
+
+* Created the complete `Project` CRUD service layer.
+* Implemented project creation.
+* Implemented retrieving all projects for the authenticated user.
+* Implemented retrieving a single project by ID.
+* Implemented project updates using partial updates (`PATCH`).
+* Implemented project deletion.
+* Created the complete Projects API router.
+* Connected API routes to the service layer.
+* Protected every Project endpoint using JWT authentication.
+* Restricted project access to the authenticated owner.
+* Implemented request validation using Pydantic schemas.
+* Implemented response serialization using `response_model`.
+* Added appropriate HTTP status codes for CRUD operations.
+* Created the `ProjectNotFoundError` custom exception.
+* Successfully completed the first full CRUD resource in the application.
+
+
+## 📚 Concepts Learned
+
+* REST API Design
+* CRUD Architecture
+* Resource-Based Routing
+* Path Parameters
+* Service Layer Architecture
+* Reusing Business Logic (DRY Principle)
+* Ownership-Based Authorization
+* SQLAlchemy Query Filtering
+* `select()`
+* `where()`
+* `scalar_one_or_none()`
+* `scalars().all()`
+* SQLAlchemy `delete()`
+* Partial Updates (`PATCH`)
+* `PUT` vs `PATCH`
+* Pydantic `model_dump()`
+* `exclude_unset=True`
+* Python `setattr()`
+* FastAPI `response_model`
+* FastAPI Response Serialization
+* HTTP Status Codes (`200`, `201`, `204`)
+* Custom Exceptions
+* Security Through Query Filtering
+
+
+## 💡 Key Takeaways
+
+* The service layer should contain business logic, while API routes should remain thin and simply coordinate requests and responses.
+* Reusing helper functions such as `get_project_by_id()` reduces duplicated code and keeps authorization logic consistent.
+* `PATCH` is designed for partial updates, allowing clients to update only the fields they provide.
+* `model_dump(exclude_unset=True)` prevents existing data from being unintentionally overwritten during partial updates.
+* `response_model` ensures that only intended fields are returned to clients while automatically converting SQLAlchemy models into API responses.
+* Filtering queries using both `project_id` and `owner_id` prevents users from accessing resources that belong to other users.
+* Separating Models, Schemas, Services, API Routes, Dependencies, and Exceptions creates a scalable backend architecture that can easily support additional resources.
+
+
+## 📂 Current Project Structure
+
+```text
+backend/
+├── alembic/
+├── app/
+│   ├── api/
+│   │   ├── auth.py
+│   │   └── project.py
+│   ├── core/
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── exceptions/
+│   │   ├── auth.py
+│   │   ├── project.py
+│   │   ├── user.py
+│   │   └── __init__.py
+│   ├── models/
+│   │   ├── project.py
+│   │   └── user.py
+│   ├── schemas/
+│   │   ├── project.py
+│   │   └── user.py
+│   ├── services/
+│   │   ├── project_service.py
+│   │   └── user_service.py
+│   ├── database.py
+│   ├── dependencies.py
+│   └── main.py
+├── alembic.ini
+├── .env
+├── requirements.txt
+└── .gitignore
+```
+
+
+## 📝 Git Commit
+
+```
+implement complete project CRUD API and service architecture
+```
+
+
+## ➡️ Next Session
+
+* Build the complete Task API
+* Create Task schemas
+* Create the Task service layer
+* Implement Task CRUD operations
+* Link Tasks to Projects
+* Nested resource ownership and authorization
+* Query filtering by project
+* Pagination fundamentals
+* Test complete Project → Task workflow
