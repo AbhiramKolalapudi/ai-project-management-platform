@@ -48,7 +48,7 @@ backend/
 
 ## 📝 Git Commit
 
-```bash
+```
 setup backend foundation with FastAPI
 ```
 
@@ -126,7 +126,7 @@ backend/
 
 ## 📝 Git Commit
 
-```bash
+```
 learn PostgreSQL fundamentals and SQLAlchemy concepts
 ```
 
@@ -224,7 +224,7 @@ backend/
 
 ## 📝 Git Commit
 
-```bash
+```
 implement SQLAlchemy models and database configuration
 ```
 
@@ -480,3 +480,130 @@ implement complete project CRUD API and service architecture
 * Query filtering by project
 * Pagination fundamentals
 * Test complete Project → Task workflow
+
+
+# AI Project Management Platform
+
+## Learning Journal — Day 6
+
+**Date:** 1 August 2026
+
+---
+
+## 🎯 Goal
+
+Build the complete Task Management API while understanding nested resources, one-to-many relationships, SQL JOINs, and pagination in a production-style backend architecture.
+
+## ✅ Completed
+
+* Created the complete `Task` CRUD service layer.
+* Implemented task creation within projects.
+* Implemented retrieving all tasks belonging to a project.
+* Implemented retrieving a single task by ID.
+* Implemented task updates using partial updates (`PATCH`).
+* Implemented task deletion.
+* Created the complete Tasks API router.
+* Connected API routes to the Task service layer.
+* Linked tasks to their parent projects using foreign keys.
+* Reused Project service logic for nested resource authorization.
+* Implemented ownership verification for nested resources.
+* Implemented SQL JOINs for secure task retrieval.
+* Added pagination using `skip` and `limit`.
+* Added query parameter validation using `Query()`.
+* Successfully completed the Project → Task backend workflow.
+
+## 📚 Concepts Learned
+
+* Parent vs Child Resources
+* Nested Resources
+* One-to-Many Relationships
+* Nested Resource Routing
+* Service Layer Reuse
+* Cross-Service Dependencies
+* SQL JOINs
+* INNER JOIN
+* Foreign Key Navigation
+* Authorization Through JOINs
+* Collection Endpoints
+* Resource Endpoints
+* Pagination Fundamentals
+* SQL `LIMIT`
+* SQL `OFFSET`
+* SQLAlchemy `.join()`
+* SQLAlchemy `.offset()`
+* SQLAlchemy `.limit()`
+* FastAPI Query Parameters
+* `Query()`
+* Query Parameter Validation
+* `ge` / `le` Validation
+* Thin Router Architecture
+* Business Logic Reuse
+* Progressive API Design
+
+## 💡 Key Takeaways
+
+* Tasks are child resources that should always belong to a project rather than existing independently.
+* Nested resources often require authorization through their parent resource rather than storing ownership directly.
+* SQL JOINs allow related tables to be queried efficiently in a single database operation.
+* Reusing helper functions such as `get_project_by_id()` and `get_task_by_id()` centralizes authorization logic and prevents code duplication.
+* Pagination prevents APIs from returning unnecessarily large datasets and is essential for scalable backend applications.
+* FastAPI automatically resolves path, query, body, and dependency parameters based on function signatures.
+* Query parameter validation using `Query()` provides automatic validation and API documentation while keeping business logic independent of the web framework.
+* A thin API layer combined with a reusable service layer results in cleaner, more maintainable backend architecture.
+
+## 📂 Current Project Structure
+
+```text
+backend/
+├── alembic/
+├── app/
+│   ├── api/
+│   │   ├── auth.py
+│   │   ├── project.py
+│   │   └── task.py
+│   ├── core/
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── exceptions/
+│   │   ├── auth.py
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   ├── user.py
+│   │   └── __init__.py
+│   ├── models/
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── user.py
+│   ├── schemas/
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── user.py
+│   ├── services/
+│   │   ├── project_service.py
+│   │   ├── task_service.py
+│   │   └── user_service.py
+│   ├── database.py
+│   ├── dependencies.py
+│   └── main.py
+├── alembic.ini
+├── .env
+├── requirements.txt
+└── .gitignore
+```
+
+## 📝 Git Commit
+
+```
+implement complete task CRUD API with nested resources and pagination
+```
+
+## ➡️ Next Session
+
+* Exception Handlers
+* Centralized Error Handling
+* Project Dashboard Endpoints
+* Task Statistics
+* Project Progress Calculation
+* Dashboard Aggregation Queries
+* Advanced SQLAlchemy Queries
+* API Response Optimization

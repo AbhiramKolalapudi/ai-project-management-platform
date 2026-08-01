@@ -96,5 +96,3 @@ def delete_project_route(
         project_id=project_id,
         current_user=current_user,
     )
-
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
