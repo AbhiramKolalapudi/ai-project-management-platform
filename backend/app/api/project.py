@@ -9,6 +9,7 @@ from app.schemas.project import (
     ProjectResponse,
     ProjectUpdate,
 )
+from app.schemas.task import TaskResponse
 from app.services import project_service
 
 router = APIRouter(
@@ -92,6 +93,23 @@ def delete_project_route(
     current_user: User = Depends(get_current_user),
 ):
     project_service.delete_project(
+        db=db,
+        project_id=project_id,
+        current_user=current_user,
+    )
+
+
+@router.post(
+    "/{project_id}/ai/tasks",
+    response_model=list[TaskResponse],
+    status_code=status.HTTP_201_CREATED,
+)
+def generate_ai_tasks_endpoint(
+    project_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return project_service.generate_ai_tasks(
         db=db,
         project_id=project_id,
         current_user=current_user,

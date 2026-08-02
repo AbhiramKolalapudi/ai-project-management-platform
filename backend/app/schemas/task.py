@@ -4,9 +4,9 @@ from pydantic import BaseModel, ConfigDict
 
 
 class TaskStatus(str, Enum):
-    TODO = "Todo"
-    IN_PROGRESS = "In Progress"
-    DONE = "Done"
+    TODO = "todo"
+    IN_PROGRESS = "in_progress"
+    DONE = "done"
 
 
 class TaskCreate(BaseModel):

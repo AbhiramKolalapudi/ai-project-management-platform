@@ -6,6 +6,9 @@ from app.models.project import Project
 from app.models.user import User
 from app.schemas.project import ProjectCreate, ProjectUpdate
 
+from app.schemas.task import TaskCreate
+from app.services.ai_service import generate_tasks_from_description
+
 
 def create_project(
     db: Session,
@@ -94,3 +97,39 @@ def delete_project(
 
     db.delete(project)
     db.commit()
+
+
+def generate_ai_tasks(
+    db: Session,
+    project_id: int,
+    current_user: User,
+):
+    from app.services.task_service import create_task
+    project = get_project_by_id(
+        db=db,
+        project_id=project_id,
+        current_user=current_user,
+    )
+
+    ai_tasks = generate_tasks_from_description(
+        project.description
+    )
+
+    created_tasks = []
+
+    for ai_task in ai_tasks:
+        task_data = TaskCreate(
+            title=ai_task.title,
+            description=ai_task.description,
+        )
+
+        created_tasks.append(
+            create_task(
+                db=db,
+                project_id=project.id,
+                task_data=task_data,
+                current_user=current_user,
+            )
+        )
+
+    return created_tasks
