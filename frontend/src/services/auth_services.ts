@@ -9,3 +9,50 @@ export async function getCurrentUser() {
 
     return response.json();
 }
+
+export async function login(email: string, password: string) {
+    const formData = new URLSearchParams();
+
+    formData.append("username", email);
+    formData.append("password", password);
+
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        body: formData,
+    });
+
+    if (!response.ok) {
+        throw new Error("Login failed");
+    }
+
+    const data = await response.json();
+
+    localStorage.setItem("token", data.access_token);
+
+    return data;
+}
+
+
+export async function register(
+    name: string,
+    email: string,
+    password: string
+) {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name,
+            email,
+            password,
+        }),
+    });
+
+    if (!response.ok) {
+        throw new Error("Registration failed");
+    }
+
+    return response.json();
+}

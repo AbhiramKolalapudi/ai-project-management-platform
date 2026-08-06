@@ -861,3 +861,136 @@ setup React frontend foundation and learn core React fundamentals
 * Call `/auth/me`
 * Display Authenticated User
 * Complete the first end-to-end frontend ↔ backend authentication flow
+
+
+## Learning Journal — Day 9
+
+**Date:** 4 August 2026
+
+---
+
+## 🎯 Goal
+
+Build the complete frontend authentication flow by implementing React Router, authentication pages, browser-based authentication, and protected frontend routing while understanding how React communicates with the FastAPI backend.
+
+## ✅ Completed
+
+* Installed and configured React Router.
+* Wrapped the application with `BrowserRouter`.
+* Implemented client-side routing using `Routes` and `Route`.
+* Created the Login and Register pages.
+* Implemented controlled forms using React state.
+* Connected the Login page to the FastAPI `/auth/login` endpoint.
+* Learned the difference between JSON requests and form-encoded requests (`OAuth2PasswordRequestForm`).
+* Updated the login service to send URL-encoded form data using `URLSearchParams`.
+* Connected the Register page to the FastAPI `/auth/register` endpoint.
+* Implemented programmatic navigation using `useNavigate()`.
+* Stored JWT access tokens in browser `localStorage`.
+* Introduced browser-side authentication using JWTs.
+* Learned how authenticated requests use the `Authorization: Bearer <token>` header.
+* Created the `ProtectedRoute` component.
+* Implemented frontend route protection using `Navigate`.
+* Completed the first production-style frontend authentication architecture.
+
+---
+
+## 📚 Concepts Learned
+
+* React Router
+* BrowserRouter
+* Routes
+* Route
+* Client-Side Routing
+* Programmatic Navigation
+* `Link`
+* `useNavigate`
+* `Navigate`
+* Protected Routes
+* Wrapper Components
+* React `children`
+* Controlled Components
+* React Forms
+* Form Submission
+* `onSubmit`
+* `preventDefault()`
+* React Event Types
+* `React.SubmitEvent`
+* Browser `localStorage`
+* Browser Persistence
+* JWT Storage
+* Browser Authentication Flow
+* Authorization Headers
+* Bearer Tokens
+* Frontend Authentication
+* Service Layer Reuse
+* URL-Encoded Form Data
+* `URLSearchParams`
+* JSON vs Form Data
+* OAuth2 Password Flow
+* Separation of Concerns
+
+---
+
+## 💡 Key Takeaways
+
+* React Router enables Single-Page Application navigation without reloading the browser.
+* Forms in React are typically implemented as controlled components where React state is the single source of truth.
+* Browser `localStorage` allows authentication tokens to persist across page refreshes.
+* JWT authentication consists of receiving a token during login, storing it securely, and including it in future API requests through the `Authorization` header.
+* The frontend should always follow the API contract defined by the backend rather than choosing request formats independently.
+* FastAPI endpoints using Pydantic models expect JSON request bodies, while `OAuth2PasswordRequestForm` follows the OAuth2 specification and expects URL-encoded form data.
+* `useNavigate()` performs programmatic navigation after application logic completes successfully, whereas `Link` is intended for user-initiated navigation.
+* Protected Routes improve user experience by preventing unauthenticated users from accessing pages before protected API requests are made.
+* Wrapper components use the special `children` prop to conditionally render nested components, making authentication logic reusable across the application.
+* Keeping API communication inside service modules and navigation inside page components maintains a clean separation of concerns.
+
+---
+
+## 📂 Current Project Structure
+
+```text
+frontend/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── ProtectedRoute.tsx
+│   │   └── Welcome.tsx
+│   ├── pages/
+│   │   ├── LoginPage.tsx
+│   │   └── RegisterPage.tsx
+│   ├── services/
+│   │   └── authService.ts
+│   ├── types/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+
+backend/
+├── app/
+│   ├── api/
+│   │   └── auth.py
+│   └── main.py
+└── (JWT Authentication + CORS configured)
+```
+
+## 📝 Git Commit
+
+```text
+implement frontend authentication flow with React Router and protected routes
+```
+
+## ➡️ Next Session
+
+* Build the Dashboard page
+* Component Composition
+* Dashboard Layout
+* Call `/auth/me`
+* Display the authenticated user
+* Call the Projects API
+* Render project lists using React
+* Navigation Bar
+* Logout functionality
+* Complete the first authenticated frontend dashboard

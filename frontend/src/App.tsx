@@ -1,12 +1,15 @@
-import Welcome from "./components/Welcome"
+import { Routes, Route } from "react-router-dom";
+
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+
 function App() {
   return (
-    <>
-      <h1>AI Project Management Platform</h1>
-
-      <Welcome name="Abhiram" />
-    </>
-  )
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
