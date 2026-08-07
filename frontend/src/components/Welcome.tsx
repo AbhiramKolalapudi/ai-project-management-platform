@@ -1,14 +1,21 @@
+import type { User } from "../types/user";
+
 type WelcomeProps = {
-  name: string
+    user: User;
+};
+
+function Welcome({ user }: WelcomeProps) {
+    return (
+        <div>
+            <h1>Dashboard</h1>
+
+            <h2>Hello, {user.name}!</h2>
+
+            <p>{user.email}</p>
+
+            <hr />
+        </div>
+    );
 }
 
-function Welcome(props: WelcomeProps) {
-  return (
-    <>
-      <h2>Welcome {props.name}!</h2>
-      <p>Let's build our AI Project Management Platform.</p>
-    </>
-  )
-}
-
-export default Welcome
+export default Welcome;

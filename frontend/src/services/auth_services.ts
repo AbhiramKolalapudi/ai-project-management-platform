@@ -1,7 +1,13 @@
 const API_BASE_URL = "http://localhost:8000";
 
 export async function getCurrentUser() {
-    const response = await fetch(`${API_BASE_URL}/auth/me`);
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
     if (!response.ok) {
         throw new Error("Failed to fetch current user");
@@ -55,4 +61,8 @@ export async function register(
     }
 
     return response.json();
+}
+
+export function logout() {
+    localStorage.removeItem("token");
 }

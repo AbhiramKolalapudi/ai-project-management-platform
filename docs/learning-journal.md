@@ -363,6 +363,7 @@ implement JWT authentication and database migrations
 
 **Date:** 31 July 2026
 
+---
 
 ## 🎯 Goal
 
@@ -892,7 +893,6 @@ Build the complete frontend authentication flow by implementing React Router, au
 * Implemented frontend route protection using `Navigate`.
 * Completed the first production-style frontend authentication architecture.
 
----
 
 ## 📚 Concepts Learned
 
@@ -929,7 +929,6 @@ Build the complete frontend authentication flow by implementing React Router, au
 * OAuth2 Password Flow
 * Separation of Concerns
 
----
 
 ## 💡 Key Takeaways
 
@@ -943,8 +942,6 @@ Build the complete frontend authentication flow by implementing React Router, au
 * Protected Routes improve user experience by preventing unauthenticated users from accessing pages before protected API requests are made.
 * Wrapper components use the special `children` prop to conditionally render nested components, making authentication logic reusable across the application.
 * Keeping API communication inside service modules and navigation inside page components maintains a clean separation of concerns.
-
----
 
 ## 📂 Current Project Structure
 
@@ -994,3 +991,147 @@ implement frontend authentication flow with React Router and protected routes
 * Navigation Bar
 * Logout functionality
 * Complete the first authenticated frontend dashboard
+
+
+# AI Project Management Platform
+
+## Learning Journal — Day 10
+
+**Date:** 7 August 2026
+
+---
+
+## 🎯 Goal
+
+Build the first authenticated dashboard using React while understanding component architecture, authenticated API integration, reusable components, and rendering dynamic data from the FastAPI backend.
+
+## ✅ Completed
+
+* Created the Dashboard page.
+* Connected the dashboard to the protected `/auth/me` endpoint.
+* Learned authenticated frontend API calls using the `Authorization` header.
+* Extended the frontend authentication service with `getCurrentUser()`.
+* Created reusable TypeScript models for `User` and `Project`.
+* Created the Project service layer for backend communication.
+* Implemented authenticated project retrieval using `GET /projects`.
+* Learned React state management for both single objects and arrays.
+* Implemented dashboard data loading using `useEffect`.
+* Learned conditional rendering for asynchronous API data.
+* Rendered project collections using React `.map()`.
+* Learned and implemented the `key` prop for efficient list rendering.
+* Built reusable `ProjectCard` components.
+* Built reusable `ProjectList` components.
+* Built a reusable `Navbar` component.
+* Built a reusable `Welcome` component.
+* Implemented logout functionality using the frontend service layer.
+* Completed the first authenticated frontend dashboard architecture.
+
+
+## 📚 Concepts Learned
+
+* Component Architecture
+* Component Composition
+* Container Components
+* Presentational Components
+* Dashboard Layout
+* React Component Tree
+* Parent → Child Communication
+* Props
+* Callback Functions
+* Service Layer Reuse
+* Frontend API Integration
+* Authenticated API Requests
+* Authorization Headers
+* Bearer Tokens
+* `useEffect` for Data Fetching
+* Why `useEffect` Cannot Be `async`
+* Async Functions Inside `useEffect`
+* React State with Objects
+* React State with Arrays
+* TypeScript Union Types
+* Type Narrowing
+* Conditional Rendering
+* React List Rendering
+* JavaScript `.map()`
+* React `key` Prop
+* Component Responsibility
+* Single Responsibility Principle
+* Separation of Concerns
+* Frontend Service Architecture
+* Logout Flow
+* Browser Navigation with `useNavigate`
+
+
+## 💡 Key Takeaways
+
+* The Dashboard page should coordinate data fetching while presentation is delegated to smaller reusable components.
+* API communication belongs inside service modules, allowing components to remain focused on rendering and application logic.
+* `useEffect` should remain synchronous; asynchronous work should be placed inside helper functions called from the effect.
+* Objects and collections are managed differently in React state: single entities commonly use `Type | null`, while collections are naturally represented using empty arrays.
+* Conditional rendering prevents components from accessing asynchronous data before it has been loaded.
+* React's `.map()` transforms arrays of data into arrays of components, allowing the UI to scale automatically with the data.
+* The `key` prop gives React a stable identity for each rendered element, improving reconciliation and rendering efficiency.
+* Parent components should own shared state and business logic, while child components should focus on displaying data and invoking callbacks.
+* Separating the dashboard into `Navbar`, `Welcome`, `ProjectList`, and `ProjectCard` results in a cleaner, more maintainable component hierarchy.
+* Frontend architecture benefits from the same principles as backend architecture: modularity, reusable services, and clear separation of responsibilities.
+
+
+## 📂 Current Project Structure
+
+```text
+frontend/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── ProjectCard.tsx
+│   │   ├── ProjectList.tsx
+│   │   ├── ProtectedRoute.tsx
+│   │   └── Welcome.tsx
+│   ├── pages/
+│   │   ├── DashboardPage.tsx
+│   │   ├── LoginPage.tsx
+│   │   └── RegisterPage.tsx
+│   ├── services/
+│   │   ├── auth_services.ts
+│   │   └── project_services.ts
+│   ├── types/
+│   │   ├── project.ts
+│   │   └── user.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+
+backend/
+├── app/
+│   ├── api/
+│   │   ├── auth.py
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── ai.py
+│   └── main.py
+└── (JWT Authentication + Projects API + AI Backend)
+```
+
+
+## 📝 Git Commit
+
+```text
+implement authenticated dashboard with reusable React component architecture
+```
+
+
+## ➡️ Next Session
+
+* Project Pages
+* Task Pages
+* CRUD Operations
+* React Forms for Creating Data
+* Updating UI After CRUD Operations
+* Component Communication During CRUD
+* Preparing the Full Stack MVP
+* Project CRUD
+* Task CRUD
