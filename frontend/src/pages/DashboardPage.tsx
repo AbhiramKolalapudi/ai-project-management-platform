@@ -8,6 +8,7 @@ import { getProjects } from "../services/project_services";
 import Welcome from "../components/Welcome";
 import ProjectList from "../components/ProjectList";
 import Navbar from "../components/Navbar";
+import CreateProjectForm from "../components/CreateProjectForm";
 
 import type { User } from "../types/user";
 import type { Project } from "../types/project";
@@ -51,6 +52,10 @@ function DashboardPage() {
         return <p>Loading...</p>;
     }
 
+    function handleProjectCreated(project: Project){
+    setProjects((prevProjects) => [...prevProjects, project]);
+    }
+
     return (
         <div>
             <Navbar user={user} onLogout={handleLogout}/>
@@ -58,6 +63,8 @@ function DashboardPage() {
             <Welcome user={user} />
 
             <h2>Your Projects</h2>
+
+            <CreateProjectForm onProjectCreated={handleProjectCreated} />
 
             <ProjectList projects={projects}/>
 

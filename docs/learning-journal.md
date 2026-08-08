@@ -140,7 +140,6 @@ learn PostgreSQL fundamentals and SQLAlchemy concepts
 - Database Sessions
 - Build the First API Endpoint
 
-# AI Project Management Platform
 
 ## Learning Journal — Day 3
 
@@ -238,7 +237,6 @@ implement SQLAlchemy models and database configuration
 * Database Migrations
 * Build the First API Endpoint
 
-# AI Project Management Platform
 
 ## Learning Journal — Day 4
 
@@ -482,8 +480,6 @@ implement complete project CRUD API and service architecture
 * Pagination fundamentals
 * Test complete Project → Task workflow
 
-
-# AI Project Management Platform
 
 ## Learning Journal — Day 6
 
@@ -993,8 +989,6 @@ implement frontend authentication flow with React Router and protected routes
 * Complete the first authenticated frontend dashboard
 
 
-# AI Project Management Platform
-
 ## Learning Journal — Day 10
 
 **Date:** 7 August 2026
@@ -1135,3 +1129,222 @@ implement authenticated dashboard with reusable React component architecture
 * Preparing the Full Stack MVP
 * Project CRUD
 * Task CRUD
+
+
+## Learning Journal — Day 11
+
+**Date:** 8 August 2026
+
+---
+
+## 🎯 Goal
+
+Build the complete Projects and Tasks frontend while understanding how React communicates with backend CRUD APIs, manages asynchronous data, updates UI state after mutations, and coordinates communication between parent and child components.
+
+## ✅ Completed
+
+* Created the complete `ProjectPage`.
+* Implemented retrieving an individual project using `GET /projects/{project_id}`.
+* Implemented project creation and connected it to the backend.
+* Implemented project updates using `PATCH /projects/{project_id}`.
+* Implemented project deletion using `DELETE /projects/{project_id}`.
+* Created the frontend `Task` and `TaskStatus` TypeScript types.
+* Created the frontend Task service layer.
+* Implemented retrieving tasks belonging to a project using `GET /projects/{project_id}/tasks`.
+* Created reusable `TaskList` and `TaskCard` components.
+* Created the `CreateTaskForm` component.
+* Implemented task creation using `POST /projects/{project_id}/tasks`.
+* Implemented task updates using `PATCH /tasks/{task_id}`.
+* Implemented task deletion using `DELETE /tasks/{task_id}`.
+* Implemented React state updates after project and task mutations.
+* Implemented child → parent communication using callback functions.
+* Used `map()` to replace updated tasks in React state.
+* Used `filter()` to remove deleted tasks from React state.
+* Implemented task editing directly inside `TaskCard`.
+* Implemented confirmation before deleting tasks and projects.
+* Connected the complete Project → Task frontend workflow to the existing FastAPI backend.
+* Successfully completed the Full Stack MVP.
+
+## 📚 Concepts Learned
+
+* Full Stack CRUD Architecture
+* Project Pages
+* Task Pages
+* Nested Resources
+* Nested API Routes
+* Frontend Service Layer
+* API Contracts
+* HTTP Methods
+
+  * `GET`
+  * `POST`
+  * `PATCH`
+  * `DELETE`
+* REST API Integration
+* Dynamic Routing
+* `useParams`
+* `useNavigate`
+* React Forms
+* Controlled Components
+* Form State
+* Asynchronous API Requests
+* Loading States
+* Error States
+* React State Management
+* State Ownership
+* Lifting State Up
+* Parent → Child Communication
+* Child → Parent Communication
+* Callback Props
+* Component Composition
+* Presentational Components
+* Container Components
+* Component Responsibility
+* React List Rendering
+* JavaScript `.map()`
+* JavaScript `.filter()`
+* React `key` Prop
+* Functional State Updates
+* Immutable State Updates
+* TypeScript Types
+* TypeScript Union Types
+* `TaskStatus`
+* Frontend ↔ Backend Data Flow
+* Nested Resource Relationships
+* CRUD State Synchronization
+
+## 💡 Key Takeaways
+
+* React does not communicate directly with PostgreSQL; the frontend communicates with FastAPI through API requests, and the backend communicates with the database.
+* Frontend service modules should contain API communication so that React components do not need to contain HTTP implementation details.
+* Nested resources represent relationships between entities. Tasks belong to projects, so creating and retrieving tasks requires the appropriate project ID.
+* `useParams()` allows a React page to extract dynamic values such as a `projectId` from the URL.
+* Parent components should own shared state when multiple child components need to interact with the same data.
+* Callback props allow child components to communicate events back to their parent components.
+* React state should be updated immutably rather than directly modifying existing arrays.
+* `map()` can be used to replace an updated item while preserving the rest of an array.
+* `filter()` can be used to remove an item from an array after a successful deletion.
+* The UI should update its React state after successful backend mutations so users can see changes immediately without requiring a full page refresh.
+* The frontend must follow the backend API contract exactly. For example, our backend uses `PATCH` for updates, so the frontend must also send `PATCH`.
+* A successful CRUD operation involves more than sending an HTTP request: the response must also be reflected correctly in React state.
+* Component architecture allows complex pages to be divided into smaller responsibilities such as `ProjectPage`, `TaskList`, `TaskCard`, and `CreateTaskForm`.
+* Keeping state close to the component that needs it simplifies React applications, while shared state should be lifted to the nearest common parent.
+* The Project and Task UI now follows the same separation-of-concerns principles used in the backend architecture.
+
+## 📂 Current Project Structure
+
+```text
+frontend/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── CreateTaskForm.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── ProjectCard.tsx
+│   │   ├── ProjectList.tsx
+│   │   ├── ProtectedRoute.tsx
+│   │   ├── TaskCard.tsx
+│   │   ├── TaskList.tsx
+│   │   └── Welcome.tsx
+│   ├── pages/
+│   │   ├── DashboardPage.tsx
+│   │   ├── LoginPage.tsx
+│   │   ├── ProjectPage.tsx
+│   │   └── RegisterPage.tsx
+│   ├── services/
+│   │   ├── auth_services.ts
+│   │   ├── project_services.ts
+│   │   └── task_services.ts
+│   ├── types/
+│   │   ├── project.ts
+│   │   ├── task.ts
+│   │   └── user.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+
+backend/
+├── app/
+│   ├── api/
+│   │   ├── auth.py
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── ai.py
+│   ├── core/
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── exceptions/
+│   ├── models/
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── user.py
+│   ├── schemas/
+│   │   ├── ai.py
+│   │   ├── project.py
+│   │   ├── task.py
+│   │   └── user.py
+│   ├── services/
+│   │   ├── ai_service.py
+│   │   ├── project_service.py
+│   │   ├── task_service.py
+│   │   └── user_service.py
+│   ├── database.py
+│   ├── dependencies.py
+│   └── main.py
+├── alembic/
+├── alembic.ini
+├── .env
+├── requirements.txt
+└── .gitignore
+```
+
+## 📝 Git Commit
+
+```text
+implement complete project and task CRUD frontend
+```
+
+## 🏆 Milestone
+
+**Full Stack MVP Complete**
+
+The application now supports:
+
+```text
+Register/Login
+      ↓
+Protected Dashboard
+      ↓
+View Projects
+      ↓
+Create Projects
+      ↓
+Open Project
+      ↓
+View Tasks
+      ↓
+Create Tasks
+      ↓
+Update Tasks
+      ↓
+Delete Tasks
+      ↓
+Update/Delete Projects
+```
+
+The frontend and backend are now connected through a complete production-style CRUD workflow.
+
+## ➡️ Next Session
+
+* AI Features UI
+* AI Task Breakdown UI
+* Connect React to existing Gemini backend
+* AI-generated task creation
+* AI Description Generator
+* Weekly AI Summary
+* Understand frontend → backend → Gemini → frontend AI flow
+* Integrate AI features into the existing Project and Task architecture
+* Begin Day 12
